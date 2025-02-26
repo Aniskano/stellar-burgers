@@ -1,11 +1,12 @@
 import { FC } from 'react';
+import { Link } from 'react-router';
+
 import {
   Input,
   Button,
   PasswordInput
 } from '@zlden/react-developer-burger-ui-components';
 import styles from '../common.module.css';
-import { Link } from 'react-router-dom';
 import { ResetPasswordUIProps } from './type';
 
 export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
@@ -32,6 +33,7 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
           />
         </div>
         <div className='pb-6'>
+          {/** @ts-expect-error: ignore typing onPointerEnterCapture/onPointerLeaveCapture events */}
           <Input
             type='text'
             placeholder='Введите код из письма'

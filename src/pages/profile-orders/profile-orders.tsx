@@ -1,10 +1,18 @@
-import { ProfileOrdersUI } from '@ui-pages';
-import { TOrder } from '@utils-types';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { Preloader } from '@ui';
+import { OrdersList } from '@components';
+import { useOrderHistoryStore } from 'services';
 
 export const ProfileOrders: FC = () => {
-  /** TODO: взять переменную из стора */
-  const orders: TOrder[] = [];
+  const { orders, loading, fetchOrderHistory } = useOrderHistoryStore();
 
-  return <ProfileOrdersUI orders={orders} />;
+  useEffect(() => {
+    fetchOrderHistory();
+  }, [fetchOrderHistory]);
+
+  if (loading) {
+    return <Preloader />;
+  }
+
+  return <OrdersList orders={orders} />;
 };

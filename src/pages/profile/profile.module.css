@@ -1,0 +1,16 @@
+.container {
+	box-sizing: border-box;
+
+	width: 100%;
+	height: 100%;
+	padding: 7.5em 1.25em 0;
+	align-self: flex-start;
+	justify-content: flex-start;
+
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 3.75em;
+
+	overflow-x: hidden;
+	overflow-y: clip;
+}

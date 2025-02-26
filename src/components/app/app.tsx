@@ -1,14 +1,18 @@
-import { ConstructorPage } from '@pages';
+import { BrowserRouter } from 'react-router';
+
+import { AppHeader, AppContent } from '@components';
+import { BASE_URL } from '../../constants';
+
 import '../../index.css';
 import styles from './app.module.css';
 
-import { AppHeader } from '@components';
-
 const App = () => (
-  <div className={styles.app}>
-    <AppHeader />
-    <ConstructorPage />
-  </div>
+  <BrowserRouter basename={BASE_URL}>
+    <div className={styles.app}>
+      <AppHeader />
+      <AppContent />
+    </div>
+  </BrowserRouter>
 );
 
 export default App;
