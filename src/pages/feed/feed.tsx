@@ -1,15 +1,20 @@
+import { FC, useEffect, useReducer } from 'react';
+
 import { Preloader } from '@ui';
 import { FeedUI } from '@ui-pages';
-import { TOrder } from '@utils-types';
-import { FC } from 'react';
+import { useOrderFeedStore } from 'services';
 
 export const Feed: FC = () => {
-  /** TODO: взять переменную из стора */
-  const orders: TOrder[] = [];
+  const { orders, loading, fetchOrderFeed } = useOrderFeedStore();
+  const [refreshCount, dispatch] = useReducer((value: number) => value + 1, 0);
 
-  if (!orders.length) {
+  useEffect(() => {
+    fetchOrderFeed();
+  }, [fetchOrderFeed, refreshCount]);
+
+  if (loading) {
     return <Preloader />;
   }
 
-  <FeedUI orders={orders} handleGetFeeds={() => {}} />;
+  return <FeedUI orders={orders} handleGetFeeds={dispatch} />;
 };

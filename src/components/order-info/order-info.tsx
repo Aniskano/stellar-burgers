@@ -1,21 +1,19 @@
 import { FC, useMemo } from 'react';
+import { useParams } from 'react-router';
+import { useShallow } from 'zustand/react/shallow';
+
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
+import { useGetOrderData } from 'hooks';
+import { useIngredientsStore } from 'services';
 
 export const OrderInfo: FC = () => {
-  /** TODO: взять переменные orderData и ingredients из стора */
-  const orderData = {
-    createdAt: '',
-    ingredients: [],
-    _id: '',
-    status: '',
-    name: '',
-    updatedAt: 'string',
-    number: 0
-  };
-
-  const ingredients: TIngredient[] = [];
+  const { number } = useParams();
+  const ingredients = useIngredientsStore(
+    useShallow((state) => state.ingredients)
+  );
+  const orderData = useGetOrderData(Number(number));
 
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {

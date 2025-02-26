@@ -1,0 +1,15 @@
+.form {
+	width: 30em;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+}
+
+.actions {
+	width: 100%;
+
+	display: flex;
+	justify-content: flex-end;
+	gap: 1em;
+}

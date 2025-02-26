@@ -1,7 +1,7 @@
 import { setCookie, getCookie } from './cookie';
-import { TIngredient, TOrder, TOrdersData, TUser } from './types';
+import { IApiError, TIngredient, TOrder, TUser } from './types';
 
-const URL = process.env.BURGER_API_URL;
+const URL = import.meta.env.BURGER_API_URL;
 
 const checkResponse = <T>(res: Response): Promise<T> =>
   res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
@@ -65,10 +65,6 @@ type TFeedsResponse = TServerResponse<{
   orders: TOrder[];
   total: number;
   totalToday: number;
-}>;
-
-type TOrdersResponse = TServerResponse<{
-  data: TOrder[];
 }>;
 
 export const getIngredientsApi = () =>
@@ -184,7 +180,7 @@ export const forgotPasswordApi = (data: { email: string }) =>
     },
     body: JSON.stringify(data)
   })
-    .then((res) => checkResponse<TServerResponse<{}>>(res))
+    .then((res) => checkResponse<TServerResponse<unknown>>(res))
     .then((data) => {
       if (data?.success) return data;
       return Promise.reject(data);
@@ -198,7 +194,7 @@ export const resetPasswordApi = (data: { password: string; token: string }) =>
     },
     body: JSON.stringify(data)
   })
-    .then((res) => checkResponse<TServerResponse<{}>>(res))
+    .then((res) => checkResponse<TServerResponse<unknown>>(res))
     .then((data) => {
       if (data?.success) return data;
       return Promise.reject(data);
@@ -232,4 +228,12 @@ export const logoutApi = () =>
     body: JSON.stringify({
       token: localStorage.getItem('refreshToken')
     })
-  }).then((res) => checkResponse<TServerResponse<{}>>(res));
+  }).then((res) => checkResponse<TServerResponse<unknown>>(res));
+
+export const handleApiError = (
+  error: unknown,
+  defaultMessage: string
+): string => {
+  const errorResponse = error as IApiError;
+  return errorResponse?.message || defaultMessage;
+};

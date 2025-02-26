@@ -1,5 +1,5 @@
-import React, { FC, memo } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, memo } from 'react';
+import { Link } from 'react-router';
 import styles from './burger-ingredient.module.css';
 
 import {

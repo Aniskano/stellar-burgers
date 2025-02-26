@@ -1,6 +1,6 @@
 import { ChangeEvent, SyntheticEvent } from 'react';
 
-export type ProfileUIProps = {
+export type ProfileFormUIProps = {
   formValue: {
     name: string;
     email: string;
