@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import { Link } from 'react-router';
 
 import { Input, Button } from '@zlden/react-developer-burger-ui-components';
 import styles from '../common.module.css';
-import { Link } from 'react-router-dom';
 import { PageUIProps } from '../common-type';
 
 export const ForgotPasswordUI: FC<PageUIProps> = ({
@@ -20,6 +20,7 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
         onSubmit={handleSubmit}
       >
         <div className='pb-6'>
+          {/** @ts-expect-error: ignore typing onPointerEnterCapture/onPointerLeaveCapture events */}
           <Input
             type='email'
             placeholder='Укажите e-mail'

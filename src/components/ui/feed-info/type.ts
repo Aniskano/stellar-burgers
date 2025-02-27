@@ -1,4 +1,5 @@
 export type FeedInfoUIProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   feed: any;
   readyOrders: number[];
   pendingOrders: number[];

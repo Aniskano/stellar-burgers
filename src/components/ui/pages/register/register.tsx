@@ -1,11 +1,12 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { Link } from 'react-router';
+
 import {
   Input,
   Button,
   PasswordInput
 } from '@zlden/react-developer-burger-ui-components';
 import styles from '../common.module.css';
-import { Link } from 'react-router-dom';
 import { RegisterUIProps } from './type';
 
 export const RegisterUI: FC<RegisterUIProps> = ({
@@ -28,6 +29,7 @@ export const RegisterUI: FC<RegisterUIProps> = ({
       >
         <>
           <div className='pb-6'>
+            {/** @ts-expect-error: ignore typing onPointerEnterCapture/onPointerLeaveCapture events */}
             <Input
               type='text'
               placeholder='Имя'
@@ -40,6 +42,7 @@ export const RegisterUI: FC<RegisterUIProps> = ({
             />
           </div>
           <div className='pb-6'>
+            {/** @ts-expect-error: ignore typing onPointerEnterCapture/onPointerLeaveCapture events */}
             <Input
               type='email'
               placeholder='E-mail'
